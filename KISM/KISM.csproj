@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4448358-65EA-4CA4-B9A2-34FD902E7ADA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KISM</RootNamespace>
+    <AssemblyName>KISM</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>게시\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ic_launcher.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8E34C5AA8DCB76E02990C5179E8AA670DC251002</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>KISM_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Config">
+      <HintPath>..\packages\Storage\Config.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Log\Log.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.1.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.1\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.1.0.2556, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.1.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ToastNotifications, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.5.1\lib\net40\ToastNotifications.dll</HintPath>
+    </Reference>
+    <Reference Include="ToastNotifications.Messages, Version=2.5.1.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.5.1\lib\net40\ToastNotifications.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="DAO\Account\accountInfo.cs" />
+    <Compile Include="DAO\Account\AccountInfoDAO.cs" />
+    <Compile Include="DAO\Account\userInfo.cs" />
+    <Compile Include="DAO\Comm\comminfo.cs" />
+    <Compile Include="DAO\DeleteKey.cs" />
+    <Compile Include="DAO\Device\DeviceInfo.cs" />
+    <Compile Include="DAO\DistributionLogDAO.cs" />
+    <Compile Include="DAO\DistributionLogEndStatDAO.cs" />
+    <Compile Include="DAO\Account\account.cs" />
+    <Compile Include="DAO\Distribution\dtinfo.cs" />
+    <Compile Include="DAO\Distribution\DtInfoDAO.cs" />
+    <Compile Include="DAO\Injector\InjectorDAO.cs" />
+    <Compile Include="DAO\Injector\injectorinfo.cs" />
+    <Compile Include="DAO\Injector\InjectorMergeInfo.cs" />
+    <Compile Include="DAO\Injector\injectormgr.cs" />
+    <Compile Include="DAO\JSON\KIS100DataDAO.cs" />
+    <Compile Include="DAO\JSON\KIS100\KIS100Hello.cs" />
+    <Compile Include="DAO\JSON\KIS100\KIS100KeyReg.cs" />
+    <Compile Include="DAO\JSON\KIS100\FromKIS100Log.cs" />
+    <Compile Include="DAO\JSON\KIS100\KIS100State.cs" />
+    <Compile Include="DAO\JSON\KIS100\KIS100LOGString.cs" />
+    <Compile Include="DAO\JSON\KIS200DataDAO.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3Hello.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3HelloToo.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3KeyDel.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3KeyGen.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3KeyReg.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3Log.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3SendKey.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3State.cs" />
+    <Compile Include="DAO\JSON\KISM3\FromKISM3UserReg.cs" />
+    <Compile Include="DAO\JSON\KISMDataDAO.cs" />
+    <Compile Include="DAO\JSON\KISMDataDAOExceptMsg.cs" />
+    <Compile Include="DAO\JSON\ReceivedFromKISDAO.cs" />
+    <Compile Include="DAO\JSON\SendToKISDAO.cs" />
+    <Compile Include="DAO\KeyRel\keyrel.cs" />
+    <Compile Include="DAO\KeyRel\KeyRelDAO.cs" />
+    <Compile Include="DAO\LoginExtensionDAO.cs" />
+    <Compile Include="DAO\LoginTimerDAO.cs" />
+    <Compile Include="DAO\Log\loginfo.cs" />
+    <Compile Include="DAO\Log\loginfoDAO.cs" />
+    <Compile Include="DAO\ManagerDeleteDAO.cs" />
+    <Compile Include="DAO\MilUnit\MilUnitInfoDAO.cs" />
+    <Compile Include="DAO\OverExpKeyDAO.cs" />
+    <Compile Include="DAO\OverExpKeyToolTipDAO.cs" />
+    <Compile Include="DAO\Ppose\PposeInfoDAO.cs" />
+    <Compile Include="DAO\RlogMsgDAO.cs" />
+    <Compile Include="DAO\SelectedKey.cs" />
+    <Compile Include="DAO\MilUnit\milunitinfo.cs" />
+    <Compile Include="DAO\Ppose\pposeinfo.cs" />
+    <Compile Include="DAO\Serial\SerialConnectDAO.cs" />
+    <Compile Include="DAO\Serial\serialinfo.cs" />
+    <Compile Include="DAO\Serial\SerialInfoDAO.cs" />
+    <Compile Include="DAO\TCP\TcpIsConnectDAO.cs" />
+    <Compile Include="DAO\TCP\ConnectedInjectorDAO.cs" />
+    <Compile Include="DAO\TCP\GenDAO.cs" />
+    <Compile Include="DAO\TCP\KeyDelDAO.cs" />
+    <Compile Include="DAO\TCP\KeyInformationDAO.cs" />
+    <Compile Include="DAO\TCP\LogReqDAO.cs" />
+    <Compile Include="DAO\TCP\RedoDAO.cs" />
+    <Compile Include="DAO\TCP\RegistUserStatusDAO.cs" />
+    <Compile Include="DAO\TCP\RekResStatusDAO.cs" />
+    <Compile Include="DAO\TCP\TcpCmdTrackerDAO.cs" />
+    <Compile Include="DAO\TCP\TcpCmdTrackerResDAO.cs" />
+    <Compile Include="DAO\TCP\UDelDAO.cs" />
+    <Compile Include="IObservable\KeyRegistrationManagementPage\ExpirationKeyTracker.cs" />
+    <Compile Include="IObservable\MainWindow\LoginTimerTracker.cs" />
+    <Compile Include="IObservable\MainWindow\MovePageTracker.cs" />
+    <Compile Include="IObservable\TCP\TcpIsConnectTracker.cs" />
+    <Compile Include="IObservable\TCP\TcpReceivedDataTracker.cs" />
+    <Compile Include="MainWindowVM.cs" />
+    <Compile Include="StaticAttribute\ConstAttribute.cs" />
+    <Compile Include="StaticAttribute\Enum\CollectionEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\commandEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\DeviceType.cs" />
+    <Compile Include="StaticAttribute\Enum\LogEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\RndTypeEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\ServerCommandEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\StringEnum.cs" />
+    <Compile Include="StaticAttribute\Enum\toastStateEnum.cs" />
+    <Compile Include="StaticAttribute\Function.cs" />
+    <Compile Include="Util\EncryptionCommand.cs" />
+    <Compile Include="Util\GetMacAddress.cs" />
+    <Compile Include="Util\HexAndByte.cs" />
+    <Compile Include="Util\InformationMessage.cs" />
+    <Compile Include="Util\LoadingMessage.cs" />
+    <Compile Include="Util\ProcessingDBData.cs" />
+    <Compile Include="Util\ToastMessage.cs" />
+    <Compile Include="Util\TransByteAndString.cs" />
+    <Compile Include="ViewModel\AccountSetting\AccountSettingPageVM.cs" />
+    <Compile Include="ViewModel\AccountSetting\ChangeAccountPageVM.cs" />
+    <Compile Include="ViewModel\AccountSetting\CreateAccountPageVM.cs" />
+    <Compile Include="ViewModel\AccountSetting\DeleteAccountPageVM.cs" />
+    <Compile Include="ViewModel\Function\Logout\AutoLogoutPageVM.cs" />
+    <Compile Include="ViewModel\Function\MilUnitInfo\UpdateMilUnitInfoItemPageVM.cs" />
+    <Compile Include="ViewModel\Function\PposeInfo\UpdatePposeInfoItemPageVM.cs" />
+    <Compile Include="ViewModel\Login\LoginPageVM.cs" />
+    <Compile Include="ViewModel\MainPageVM.cs" />
+    <Compile Include="ViewModel\Setting\CommSettingPageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\MilitaryUnitSettingPageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\PurposeSettingPageVM.cs" />
+    <Compile Include="ViewModel\Setting\SettingPageVM.cs" />
+    <Compile Include="ViewModel\SubPageDataGridVM\KeyDistributionRecordPageVM.cs" />
+    <Compile Include="ViewModel\SubPageDataGridVM\KeyManagementRecordPageVM.cs" />
+    <Compile Include="ViewModel\SubPageDataGridVM\ManagerRegistKIS100PageVM.cs" />
+    <Compile Include="ViewModel\SubPageDataGridVM\ManagerRegistKIS200PageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\KeyDistributionStatusPageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\KeyRegistrationManagementPageVM.cs" />
+    <Compile Include="ViewModel\Setting\LogListPageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\ManagerRegistrationManagementPageVM.cs" />
+    <Compile Include="ViewModel\SubPageVM\RecordStatusViewPageVM.cs" />
+    <Compile Include="View\AccountSetting\AccountSettingPage.xaml.cs">
+      <DependentUpon>AccountSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountSetting\ChangeAccountPage.xaml.cs">
+      <DependentUpon>ChangeAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountSetting\CreateAccountPage.xaml.cs">
+      <DependentUpon>CreateAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AccountSetting\DeleteAccountPage.xaml.cs">
+      <DependentUpon>DeleteAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\Account\DeleteAccountRequestPage.xaml.cs">
+      <DependentUpon>DeleteAccountRequestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\HistoryInitialize\HistoryInitializePage.xaml.cs">
+      <DependentUpon>HistoryInitializePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\InjectorAccountManagement\DeleteInjectorAccountPage.xaml.cs">
+      <DependentUpon>DeleteInjectorAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\KeyDeletion\KeyDeletionPage.xaml.cs">
+      <DependentUpon>KeyDeletionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\KeyGeneration\KeyGenerationPage.xaml.cs">
+      <DependentUpon>KeyGenerationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\KeyRegistration\KeyRegistrationPage.xaml.cs">
+      <DependentUpon>KeyRegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\KeySending\KeySendingPage.xaml.cs">
+      <DependentUpon>KeySendingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\Logout\AutoLogoutPage.xaml.cs">
+      <DependentUpon>AutoLogoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\Logout\LogoutPage.xaml.cs">
+      <DependentUpon>LogoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\MilUnitInfo\DeleteMilUnitInfoItemPage.xaml.cs">
+      <DependentUpon>DeleteMilUnitInfoItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\MilUnitInfo\UpdateMilUnitInfoItemPage.xaml.cs">
+      <DependentUpon>UpdateMilUnitInfoItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\PposeInfo\DeletePposeInfoItemPage.xaml.cs">
+      <DependentUpon>DeletePposeInfoItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\PposeInfo\UpdatePposeInfoItemPage.xaml.cs">
+      <DependentUpon>UpdatePposeInfoItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\RequestFromKIS_100\RequestHistorySavePage.xaml.cs">
+      <DependentUpon>RequestHistorySavePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\TcpConnect\TcpDisconnectPage.xaml.cs">
+      <DependentUpon>TcpDisconnectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Information\InformationWindow.xaml.cs">
+      <DependentUpon>InformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Function\RequestFromKIS_100\RequestKeyGenerationPage.xaml.cs">
+      <DependentUpon>RequestKeyGenerationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Information\SelectInformationWindow.xaml.cs">
+      <DependentUpon>SelectInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loading\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Setting\CommSettingPage.xaml.cs">
+      <DependentUpon>CommSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\MilitaryUnitSettingPage.xaml.cs">
+      <DependentUpon>MilitaryUnitSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\PurposeSettingPage.xaml.cs">
+      <DependentUpon>PurposeSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Setting\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPageDataGrid\KeyDistributionRecordPage.xaml.cs">
+      <DependentUpon>KeyDistributionRecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPageDataGrid\KeyManagementRecordPage.xaml.cs">
+      <DependentUpon>KeyManagementRecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPageDataGrid\ManagerRegistDefaultPage.xaml.cs">
+      <DependentUpon>ManagerRegistDefaultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPageDataGrid\ManagerRegistKIS100Page.xaml.cs">
+      <DependentUpon>ManagerRegistKIS100Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPageDataGrid\ManagerRegistKIS200Page.xaml.cs">
+      <DependentUpon>ManagerRegistKIS200Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\KeyDistributionStatusPage.xaml.cs">
+      <DependentUpon>KeyDistributionStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\KeyRegistrationManagementPage.xaml.cs">
+      <DependentUpon>KeyRegistrationManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Setting\LogListPage.xaml.cs">
+      <DependentUpon>LogListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\ManagerRegistrationManagementPage.xaml.cs">
+      <DependentUpon>ManagerRegistrationManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SubPage\RecordStatusViewPage.xaml.cs">
+      <DependentUpon>RecordStatusViewPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resource\Style\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountSetting\AccountSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountSetting\ChangeAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountSetting\CreateAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AccountSetting\DeleteAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\Account\DeleteAccountRequestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\HistoryInitialize\HistoryInitializePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\InjectorAccountManagement\DeleteInjectorAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\KeyDeletion\KeyDeletionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\KeyGeneration\KeyGenerationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\KeyRegistration\KeyRegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\KeySending\KeySendingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\Logout\AutoLogoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\Logout\LogoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\MilUnitInfo\DeleteMilUnitInfoItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\MilUnitInfo\UpdateMilUnitInfoItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\PposeInfo\DeletePposeInfoItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\PposeInfo\UpdatePposeInfoItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\RequestFromKIS_100\RequestHistorySavePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\TcpConnect\TcpDisconnectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Information\InformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Function\RequestFromKIS_100\RequestKeyGenerationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Information\SelectInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Loading\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Setting\CommSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPage\MilitaryUnitSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPage\PurposeSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Setting\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPageDataGrid\KeyDistributionRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPageDataGrid\KeyManagementRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPageDataGrid\ManagerRegistDefaultPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SubPageDataGrid\ManagerRegistKIS100Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SubPageDataGrid\ManagerRegistKIS200Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SubPage\KeyDistributionStatusPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPage\KeyRegistrationManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Setting\LogListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPage\ManagerRegistrationManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SubPage\RecordStatusViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="KISM_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\injector_admin_mgr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Jpg\Login2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Jpg\Dashboard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\뒤로.png" />
+    <Resource Include="Resource\Png\로그아웃.png" />
+    <Resource Include="Resource\Png\설정.png" />
+    <Resource Include="Resource\Png\암호모듈관리.png" />
+    <Resource Include="Resource\Png\암호키발급요청.png" />
+    <Resource Include="Resource\Png\암호키전송.png" />
+    <Resource Include="Resource\Png\암호키조회.png" />
+    <Resource Include="Resource\Png\암호키주입기등록관리.png" />
+    <Resource Include="Resource\Png\주입기와연결.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\암호키이력관리.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\발급단말등록관리.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\암호키랩핑테스트.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{276531D5-9A11-4CD3-9397-AB758A939349}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Jpg\Dashboard2.jpg" />
+    <Resource Include="Resource\Jpg\Login3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Jpg\Dashboard3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\character.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\강찬친구_대한민국-육군.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\티엔젠-화이트.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\강찬친구_대한민국-육군_600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\티엔젠_입체.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Gif\Loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\부대 설정.png" />
+    <Resource Include="Resource\Png\사용자 계성 변경.png" />
+    <Resource Include="Resource\Png\사용자 계성 삭제.png" />
+    <Resource Include="Resource\Png\사용자 계성 생성.png" />
+    <Resource Include="Resource\Png\암호키 배포관리.png" />
+    <Resource Include="Resource\Png\암호키 이력관리.png" />
+    <Resource Include="Resource\Png\용도 설정.png" />
+    <Resource Include="Resource\Png\통신 설정.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\관리자 등록관리.png" />
+    <Resource Include="Resource\Png\부대설정-수정.png" />
+    <Resource Include="Resource\Png\사용자 계정 변경-수정.png" />
+    <Resource Include="Resource\Png\사용자 계정 삭제-수정.png" />
+    <Resource Include="Resource\Png\사용자 계정 생성-수정.png" />
+    <Resource Include="Resource\Png\암호키 배포관리-수정.png" />
+    <Resource Include="Resource\Png\암호키 이력관리-수정.png" />
+    <Resource Include="Resource\Png\용도설정-수정.png" />
+    <Resource Include="Resource\Png\통신설정-수정.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\Png\로그 이력관리.png" />
+    <Resource Include="Resource\Png\암호키 배포관리 수정.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-cyber-security-2092663.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ic_launcher.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\암호키 등록 관리.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\주입기 등록관리.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Png\부대 등록 관리.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>이 프로젝트는 이 컴퓨터에 없는 NuGet 패키지를 참조합니다. 해당 패키지를 다운로드하려면 NuGet 패키지 복원을 사용하십시오. 자세한 내용은 http://go.microsoft.com/fwlink/?LinkID=322105를 참조하십시오. 누락된 파일은 {0}입니다.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

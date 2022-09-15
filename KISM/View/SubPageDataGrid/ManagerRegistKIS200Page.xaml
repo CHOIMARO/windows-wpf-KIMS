@@ -1,0 +1,76 @@
+﻿<Grid x:Class="KISM.View.SubPageDataGrid.ManagerRegistKIS200Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KISM.View.SubPageDataGrid"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Grid_Loaded" Unloaded="Grid_Unloaded">
+
+    <Grid>
+        <Border BorderBrush="Black" BorderThickness="1.7" Margin="0,0,20,25" CornerRadius="10">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.45"/>
+            </Border.Background>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="KIS-200 계정 설정" Foreground="White" FontSize="25" HorizontalAlignment="Center" Margin="0,0,0,50"/>
+                <Border BorderBrush="Black" BorderThickness="1.7" CornerRadius="10" Width="350" Height="150" Background="{Binding UserIconBackground}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1">
+                            <md:PackIcon Kind="UserOutline" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding UserIconForeground}"
+                                        Opacity="{Binding UserIconOpacity}"/>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Button Click="DeleteBtn_Click" Width="Auto" Height="Auto" Margin="1" md:ButtonAssist.CornerRadius="10">
+                                        <StackPanel>
+                                            <md:PackIcon Kind="TrashCan" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="20" Foreground="Red"/>
+                                            <TextBlock Text="삭제" FontWeight="Bold"/>
+                                        </StackPanel>
+
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                         
+                        </Grid>
+                    </Grid>
+                    
+                </Border>
+
+                <TextBox x:Name="FloatingIDBox"  md:HintAssist.Hint="아이디를 입력해주세요."  md:HintAssist.Foreground="#40c4ff" FontSize="25" Foreground="White" Margin="0,40,0,0"
+                                  md:TextFieldAssist.UnderlineBrush="#40c4ff"
+                                  md:HintAssist.HelperText="아이디는 6~12자의 영문, 숫자 사용 가능" 
+                                  md:HintAssist.HelperTextFontSize="14" 
+                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                <PasswordBox  x:Name="FloatingPasswordBox"  md:HintAssist.Hint="비밀번호를 입력해주세요."  
+                                          md:HintAssist.Foreground="#40c4ff"  md:TextFieldAssist.UnderlineBrush="#40c4ff" FontSize="25" Margin="0,40,0,0"
+                                          md:HintAssist.HelperText="8자 이상 20자 이하(대,소문자 구분), 문자/숫자/기호 사용 가능" 
+                                          md:HintAssist.HelperTextFontSize="14" 
+                                          Foreground="White"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                <PasswordBox  x:Name="FloatingReconfirmPasswordBox"  md:HintAssist.Hint="비밀번호를 한 번 더 입력해주세요."  
+                                          md:HintAssist.Foreground="#40c4ff"  md:TextFieldAssist.UnderlineBrush="#40c4ff" FontSize="25" Margin="0,40,0,0"
+                                          Foreground="White"
+                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                <Border BorderThickness="0" BorderBrush="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,50,0,0">
+                    <Button Height="80" Margin="0,0,0,0" Content="주입기 계정 설정" FontSize="25" Click="RegistBtn_Click" md:ButtonAssist.CornerRadius="10">
+                    </Button>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Grid>

@@ -1,0 +1,211 @@
+﻿<Page x:Class="KISM.View.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:KISM.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="MainPage"
+      Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Grid>
+        <Image Source="/Resource/Jpg/Login3.jpg" Stretch="Fill"/>
+        <Border Height="100" VerticalAlignment="Top">
+            <Border.Background>
+                <SolidColorBrush Color="#FF121C46" Opacity="0.5"/>
+            </Border.Background>
+            <TextBlock Text="키주입 통제 시스템" HorizontalAlignment="Center" FontSize="55" Foreground="#40c4ff" FontWeight="Bold" VerticalAlignment="Center"/>
+        </Border>
+        
+        <Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0" Height="150">
+                <Image Source="/Resource/Png/character.png" Width="180" Height="180" Margin="0,10,1100,0"/>
+                <TextBlock Text="{Binding LoginTime, FallbackValue=10분 0초}" Width="100" Height="50" Margin="0,0,0,30" FontSize="22"
+                               Foreground="White" Background="Transparent" VerticalAlignment="Center" TextDecorations="Underline"/>
+                <Button Width="110" Height="40" Background="White" Margin="0,0,25,50" Content="로그인 연장" Foreground="Black"/>
+                
+
+                <Button x:Name="connect_Btn" Width="160" Height="40" Background="{Binding ConnectBtnBackground}" BorderBrush="{x:Null}" 
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="ConnectBtn_Click" Margin="0,0,0,50" Content="{Binding ConnectBtnTxt}" Foreground="White">
+
+                </Button>
+                <Button Width="80" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,50"
+                        Click="ExpirationBtn_Click">
+                    <md:PackIcon Kind="EncryptionExpiration" Width="50" Height="50" Foreground="{Binding ExpirationKeyColor}"/>
+                    <Button.ToolTip>
+                        <StackPanel Orientation="Vertical" Background="white">
+                            <ListView x:Name="IvUsers" ItemsSource="{Binding ModuleList}" Foreground="Black" Height="200" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                      HorizontalAlignment="Center"
+                                              >
+                                <ListView.Resources>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Dpt}">
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="부대 명" FontSize="20"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Ppose}">
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="용도 명" FontSize="20"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding ExpDate}">
+                                            <GridViewColumn.Header>
+                                                <TextBlock Text="만료일" FontSize="20"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+
+                                    </GridView>
+                                </ListView.View>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsFocused" Value="True">
+                                                <Setter Property="Background" Value="#40c4ff"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#40c4ff"/>
+                                                <Setter Property="Foreground" Value="Blue"/>
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="False">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                            <Border BorderBrush="Silver" BorderThickness="1" Margin="0,0,0,0" />
+                            <TextBlock Text="버튼을 누르면 키 관리 페이지로 이동합니다." Foreground="Black" FontSize="20"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
+                <Button Width="80" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" 
+                        Visibility="{Binding PmitVisibility}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                    Click="SettingBtn_Click" Margin="0,0,0,50">
+                    <md:PackIcon Kind="Settings" Width="50" Height="50"/>
+                </Button>
+
+                <Button Click="LogoutBtn_Click" Margin="10,0,20,50" Height="60" Width="60"
+                            Background="{x:Null}"  BorderBrush="{x:Null}" Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                    <md:PackIcon Width="45" Height="50" Kind="Logout"/>
+                </Button>
+            </StackPanel>
+        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height=".2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <md:Card x:Name="keyRegistrationManagementCard" UniformCornerRadius="10">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/암호키 등록 관리.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="KeyRegistrationManagement" Width="{Binding ActualWidth, ElementName=keyRegistrationManagementCard}" Height="{Binding ActualHeight, ElementName=keyRegistrationManagementCard}" Style="{StaticResource MaterialDesignFlatButton}"  md:ButtonAssist.CornerRadius="35" Margin="0,0,0,1"
+                                                Click="KeyRegistrationManagementBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <md:Card UniformCornerRadius="10" x:Name="keyDistributionCard">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/암호키 배포관리 수정.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="KeyDistributionStatus" Width="{Binding ActualWidth, ElementName=keyDistributionCard}" Height="{Binding ActualHeight, ElementName=keyDistributionCard}" Style="{StaticResource MaterialDesignFlatButton}" md:ButtonAssist.CornerRadius="40" Margin="0,0,0,1"
+                                                Click="KeyDistributionStatusBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+                <Grid Grid.Column="5">
+                    <md:Card x:Name="managerRegistrationManagementCard" UniformCornerRadius="10">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/주입기 등록관리.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="ManagerRegistrationManagement" Width="{Binding ActualWidth, ElementName=managerRegistrationManagementCard}" Height="{Binding ActualHeight, ElementName=managerRegistrationManagementCard}" Style="{StaticResource MaterialDesignFlatButton}"  md:ButtonAssist.CornerRadius="41"
+                                                Click="ManagerRegistrationManagementBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width=".2*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <md:Card x:Name ="recordStatusViewCard" UniformCornerRadius="10">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/암호키 이력관리-수정.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="StatusView" Width="{Binding ActualWidth, ElementName=recordStatusViewCard}" Height="{Binding ActualHeight, ElementName=recordStatusViewCard}" Style="{StaticResource MaterialDesignFlatButton}"  md:ButtonAssist.CornerRadius="41"
+                                                Click="RecordStatusViewBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <md:Card UniformCornerRadius="10" x:Name="militaryUnitSettingsCard">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/부대 등록 관리.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="MilitaryUnitSetBtn" Width="{Binding ActualWidth, ElementName=militaryUnitSettingsCard}" Height="{Binding ActualHeight, ElementName=militaryUnitSettingsCard}"  Style="{StaticResource MaterialDesignFlatButton}" md:ButtonAssist.CornerRadius="45" Margin="0,0,0,1"
+                                                Click="MilitaryUnitSetBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+                <Grid Grid.Column="5">
+                    <md:Card x:Name="purposeSettingsCard" UniformCornerRadius="10">
+                        <md:Card.Background>
+                            <ImageBrush ImageSource="/Resource/Png/용도설정-수정.png"/>
+                        </md:Card.Background>
+                        <Grid>
+                            <Button x:Name="PurposeSetBtn" Width="{Binding ActualWidth, ElementName=purposeSettingsCard}" Height="{Binding ActualHeight, ElementName=purposeSettingsCard}"  Style="{StaticResource MaterialDesignFlatButton}" md:ButtonAssist.CornerRadius="45" Margin="0,0,0,1"
+                                                Click="PurposeSetBtn_Click"/>
+                        </Grid>
+                    </md:Card>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+        <Image Source="/Resource/Png/강찬친구_대한민국-육군_600.png" 
+               Width="500" Height="500" Margin="20"
+               HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBlock Text="Copyright 2021 TnGen Co.,Ltd. All Rights Reserved." 
+                   Foreground="White" FontSize="20" Margin="20"
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+    </Grid>
+</Page>

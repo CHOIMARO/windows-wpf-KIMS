@@ -1,0 +1,224 @@
+﻿<Page x:Class="KISM.View.SubPage.KeyDistributionStatusPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:KISM.View.SubPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="KeyDistributionStatusPage"
+      Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Style/DataGridStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Image Source="/Resource/Jpg/Dashboard3.jpg" />
+        <StackPanel Orientation="Horizontal">
+            <Button Click="BackBtn_Click" Margin="30" Height="55" Width="80" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid>
+                    <Image Source="/Resource/Png/뒤로.png" />
+                </Grid>
+            </Button>
+            <TextBlock Text="암호키 배포 관리" FontSize="30" Margin="0,35,0,0" FontWeight="Bold" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding LoginTime, FallbackValue=10분 0초}" Width="100" Height="50" Margin="1310,40,0,0" FontSize="22"
+                                Foreground="White" Background="Transparent" VerticalAlignment="Top" TextDecorations="Underline"/>
+                <Button Width="110" Height="40" Background="White" Margin="0,35,20,0" Content="로그인 연장" Foreground="Black"
+                                Click="loginTimeExtensionBtn_Click" VerticalAlignment="Top"/>
+            </StackPanel>
+        </StackPanel>
+        <Border Height="100" VerticalAlignment="Bottom" Margin="35,0,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Resource/Png/강찬친구_대한민국-육군_600.png" Width="280" Height="280" />
+                <TextBlock Text="Copyright 2021 TnGen Co.,Ltd. All Rights Reserved." Foreground="White" FontSize="20"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="420,0,0,10"/>
+            </StackPanel>
+        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height=".3*"/>
+                <RowDefinition Height=".4*"/>
+                <RowDefinition Height="5.5*"/>
+                <RowDefinition Height="0.7*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Border>
+                        <Grid>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6.7*"/>
+                    <ColumnDefinition Width="2.3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
+                        <md:PackIcon Kind="Computer" Width="50" Height="50" Foreground="White"/>
+                        <TextBlock Text="암호 키 배포 이력 목록" FontSize="25" Margin="20,6,0,0" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <md:PackIcon Kind="Cellphone" Width="50" Height="50" Foreground="White"/>
+                        <TextBlock Text="주입기에 저장된 암호키 배포 이력" FontSize="21" Margin="10,10,0,0" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="17.1*"/>
+                    <ColumnDefinition Width=".3*"/>
+                    <ColumnDefinition Width="3.5*"/>
+                    <ColumnDefinition Width=".3*"/>
+                    <ColumnDefinition Width="7.8*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <DataGrid x:Name="injectorDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ColumnHeaderStyle="{StaticResource DataGridColumn}"
+                              CellStyle="{StaticResource DataGridCellCenter}"
+                              RowStyle="{StaticResource DataGridRowStyle}" 
+                              CanUserSortColumns="False" AutoGenerateColumns="False" 
+                              CanUserAddRows="False" ItemsSource="{Binding RegisteredDataRow}" IsReadOnly="True" Margin="35,0,0,0" BorderThickness="2" BorderBrush="Black"
+                              HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" GridLinesVisibility="All" 
+                              HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                              AlternationCount="2" AlternatingRowBackground="LightGray" SelectionMode="Single"
+                              >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                             Color="#78909c"/>
+                        </DataGrid.Resources>
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.45"/>
+                        </DataGrid.Background>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Num}" Header="순서" MaxWidth="80"/>
+                            <DataGridTextColumn Binding="{Binding RegDate}" Header="등록 일자" MinWidth="245" />
+                            <DataGridTextColumn Binding="{Binding DvName}" Header="장비 명" MinWidth="150"/>
+                            <!--<DataGridTextColumn Binding="{Binding Hw}" Header="장비 식별 정보" MinWidth="170"/>-->
+                            <DataGridTextColumn Binding="{Binding Sn}" Header="장비 식별 정보" MinWidth="170"/>
+                            <DataGridTextColumn Binding="{Binding Dpt}" Header="부대" MinWidth="152"/>
+                            <DataGridTextColumn Binding="{Binding Ppose}" Header="용도" MinWidth="151"/>
+                            <DataGridTextColumn Binding="{Binding Stat}" Header="상태" MinWidth="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.3*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height=".2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1.3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Button x:Name="registHistoryBtn" Click="RegistBtn_Click" Background="#9DC8C8" BorderBrush="Black" BorderThickness="3"
+                        Style="{StaticResource MaterialDesignRaisedButton}" Width="Auto" Height="Auto"
+                                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                            <StackPanel Orientation="Vertical">
+                                <md:PackIcon x:Name="registHistoryBtn_icon" Kind="KeyAdd" Height="50" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                                <TextBlock x:Name="registHistoryBtn_text" Text="암호키 이력 등록" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="19" FontWeight="Bold" >
+                                </TextBlock>
+                            </StackPanel>
+
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Button x:Name="initializeInjectorHistoryBtn" Click="InitializeBtn_Click" Background="#58C9B9" BorderBrush="Black" BorderThickness="3"
+                        Style="{StaticResource MaterialDesignRaisedButton}" Width="Auto" Height="Auto" Margin="0,0,0,0"
+                                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+                            <StackPanel Orientation="Vertical">
+                                <md:PackIcon x:Name="initializeInjectorHistoryBtn_icon" Kind="KeyRemove" Height="50" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                                <TextBlock x:Name="initializeInjectorHistoryBtn_text" Text="주입기 이력 초기화" FontSize="19" Margin="0,0,0,0" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Border BorderBrush="Black" BorderThickness="1.7" Margin="0,0,20,0" CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.45"/>
+                        </Border.Background>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border x:Name="listviewBorder" BorderBrush="Black" BorderThickness="1.7" CornerRadius="10" Width="Auto" Height="Auto" Background="White"
+                                    Margin="10">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                                    <ListView x:Name="IvUsers" ItemsSource="{Binding ModuleList}" Foreground="Black"  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Height="670"
+                                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                              >
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Width="90" DisplayMemberBinding="{Binding name}" Header="모듈">
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="auto" DisplayMemberBinding="{Binding timestamp}" Header="일자" >
+                                                </GridViewColumn>
+                                                <GridViewColumn Width="120" DisplayMemberBinding="{Binding ip}" Header="아이피">
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="하드웨어" Width="115" DisplayMemberBinding="{Binding hw}"/>
+                                                <GridViewColumn Header="시리얼넘버" Width="130" DisplayMemberBinding="{Binding sn}"/>
+                                                <GridViewColumn Header="부대" Width="90" DisplayMemberBinding="{Binding grp}"/>
+                                                <GridViewColumn Header="용도" Width="90" DisplayMemberBinding="{Binding ppo}"/>
+                                                <GridViewColumn Header="상태" Width="100" DisplayMemberBinding="{Binding stat}"/>
+                                            </GridView>
+                                        </ListView.View>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsFocused" Value="True">
+                                                        <Setter Property="Background" Value="#40c4ff"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#40c4ff"/>
+                                                        <Setter Property="Foreground" Value="Blue"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsFocused" Value="False">
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                    </ListView>
+                                    <Button VerticalAlignment="Bottom" Width="120" Height="40" FontSize="15" FontWeight="Bold"
+                                        HorizontalAlignment="Right" Margin="0,0,0,0" md:ButtonAssist.CornerRadius="10" Click="LoadHistoryBtn_Click" Padding="0"
+                                        Content="이력 가져오기">
+
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4">
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

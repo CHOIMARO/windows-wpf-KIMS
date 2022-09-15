@@ -1,0 +1,49 @@
+﻿<Page x:Class="KISM.View.SubPage.RecordStatusViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KISM.View.SubPage"
+      xmlns:KeyRecordPage1 ="clr-namespace:KISM.View.SubPageDataGrid"
+      xmlns:KeyRecordPage2 ="clr-namespace:KISM.View.SubPageDataGrid"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      Title="RecordStatusViewPage"
+      Background="#33445A"
+      Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <!--<Image Source="/Resource/Jpg/Dashboard3.jpg" Stretch="UniformToFill"/>-->
+        <Border BorderBrush="Black" BorderThickness="0" Panel.ZIndex="2">
+            <StackPanel Orientation="Horizontal">
+                <Button Click="BackBtn_Click" Margin="30" Height="55" Width="80"
+                            Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid>
+                        <Image Source="/Resource/Png/뒤로.png" />
+                    </Grid>
+                </Button>
+                <TextBlock Text="암호키 이력 관리" FontSize="30" Margin="0,35,0,0" FontWeight="Bold" Foreground="White"/>
+                <ComboBox x:Name="pageGroup" Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                                           md:HintAssist.Hint="이력 관리 페이지 " FontSize="20" Margin="220,24,0,0" 
+                                           ItemsSource="{Binding StatItems}" 
+                                           md:TextFieldAssist.HasClearButton="True" Background="White" 
+                                           Width="220"
+                                            VerticalAlignment="Top" SelectionChanged="PageGroup_SelectionChanged"
+                                            >
+                    <ComboBox.SelectedItem>
+                        <Binding Path="SelectedValidationOutlined" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                        </Binding>
+                    </ComboBox.SelectedItem>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1" Visibility="{Binding KeyManagementWindow}">
+            <KeyRecordPage2:KeyManagementRecordPage Panel.ZIndex="0"/>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding KeyDistributionWindow}">
+            <KeyRecordPage1:KeyDistributionRecordPage Panel.ZIndex="0"/>
+        </Grid>
+    </Grid>
+</Page>

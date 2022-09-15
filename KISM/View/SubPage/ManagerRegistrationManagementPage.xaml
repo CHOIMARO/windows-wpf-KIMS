@@ -1,0 +1,144 @@
+﻿<Page x:Class="KISM.View.SubPage.ManagerRegistrationManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:KISM.View.SubPage"
+      xmlns:defaultPage = "clr-namespace:KISM.View.SubPageDataGrid" 
+      xmlns:kis100Page = "clr-namespace:KISM.View.SubPageDataGrid" 
+      xmlns:kis200Page = "clr-namespace:KISM.View.SubPageDataGrid" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="ManagerRegistrationManagementPage"
+      Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Style/DataGridStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Image Source="/Resource/Jpg/Dashboard3.jpg" />
+        <StackPanel Orientation="Horizontal">
+            <Button Click="BackBtn_Click" Margin="30" Height="55" Width="80" Style="{StaticResource MaterialDesignRaisedButton}" 
+                            Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid>
+                    <Image Source="/Resource/Png/뒤로.png" />
+                </Grid>
+            </Button>
+            <TextBlock Text="주입기 등록 관리" FontSize="30" Margin="0,35,0,0" FontWeight="Bold" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding LoginTime, FallbackValue=10분 0초}" Width="100" Height="50" Margin="1310,40,0,0" FontSize="22"
+                                Foreground="White" Background="Transparent" VerticalAlignment="Top" TextDecorations="Underline"/>
+                <Button Width="110" Height="40" Background="White" Margin="0,35,20,0" Content="로그인 연장" Foreground="Black"
+                                Click="loginTimeExtensionBtn_Click" VerticalAlignment="Top"/>
+            </StackPanel>
+        </StackPanel>
+        <Border Height="100" VerticalAlignment="Bottom" Margin="35,0,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Source="/Resource/Png/강찬친구_대한민국-육군_600.png" Width="280" Height="280" />
+                <TextBlock Text="Copyright 2021 TnGen Co.,Ltd. All Rights Reserved." Foreground="White" FontSize="20"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="420,0,0,10"/>
+            </StackPanel>
+        </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height=".3*"/>
+                <RowDefinition Height=".4*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Border>
+                        <Grid>
+                           
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="2">
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7.1*"/>
+                    <ColumnDefinition Width="2.8*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
+                        <md:PackIcon Kind="Computer" Width="50" Height="50" Foreground="White"/>
+                        <TextBlock Text="주입기 계정 등록 현황" FontSize="25" Margin="20,6,0,0" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <md:PackIcon Kind="Cellphone" Width="50" Height="50" Foreground="White"/>
+                        <TextBlock Text="주입기 계정 정보 입력" FontSize="21" Margin="10,10,0,0" Foreground="White"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="0.78*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <DataGrid x:Name="injectorDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Height="785" Width="1300"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ColumnHeaderStyle="{StaticResource DataGridColumn}"
+                              CellStyle="{StaticResource DataGridCellCenter}"
+                              RowStyle="{StaticResource DataGridRowStyle}" ColumnWidth="*"
+                              CanUserSortColumns="False" AutoGenerateColumns="False"
+                              CanUserAddRows="False" ItemsSource="{Binding RegisteredDataRow}" IsReadOnly="True" Margin="35,0,0,0" BorderThickness="2" BorderBrush="Black"
+                              HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" GridLinesVisibility="All" 
+                              HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                              AlternationCount="2" AlternatingRowBackground="LightGray" SelectionMode="Single"
+                              >
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                             Color="#78909c"/>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Num}" Header="순서" />
+                            <DataGridTextColumn Binding="{Binding RegDate}" Header="등록 일자" MinWidth="300"/>
+                            <DataGridTextColumn Binding="{Binding IjAccount}" Header="주입기 계정" />
+                            <DataGridTextColumn Binding="{Binding IjName}" Header="주입기 이름" />
+                            <DataGridTextColumn Binding="{Binding Sn}" Header="시리얼 넘버" />
+                        </DataGrid.Columns>
+                        <DataGrid.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.45"/>
+                        </DataGrid.Background>
+                    </DataGrid>
+                </Grid>
+                <Grid Grid.Column="1" Visibility="{Binding DefaultWindow}">
+                    <defaultPage:ManagerRegistDefaultPage Panel.ZIndex="0"/>
+                </Grid>
+                <Grid Grid.Column="1" Visibility="{Binding ConnectKIS100Window}">
+                    <kis100Page:ManagerRegistKIS100Page Panel.ZIndex="0"/>
+                </Grid>
+                <Grid Grid.Column="1" Visibility="{Binding ConnectKIS200Window}">
+                    <kis200Page:ManagerRegistKIS200Page Panel.ZIndex="0"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="4">
+
+            </Grid>
+        </Grid>
+    </Grid>
+    
+</Page>
